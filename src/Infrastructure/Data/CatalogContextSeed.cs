@@ -60,10 +60,10 @@ public class CatalogContextSeed
     {
         return new List<CatalogBrand>
             {
-                new("Azure"),
-                new(".NET"),
-                new("Visual Studio"),
-                new("SQL Server"),
+                new("RPM"),
+                new("Vitoil"),
+                new("SnakeOil"),
+                new("RimRam"),
                 new("Other")
             };
     }
@@ -72,10 +72,11 @@ public class CatalogContextSeed
     {
         return new List<CatalogType>
             {
-                new("Mug"),
-                new("T-Shirt"),
-                new("Sheet"),
-                new("USB Memory Stick")
+                new("Brakes"),
+                new("Lighting"),
+                new("Wheels & Tires"),
+                new("Batteries"),
+                new("Oil")
             };
     }
 
@@ -83,7 +84,7 @@ public class CatalogContextSeed
     {
         return new List<CatalogItem>
             {
-                new(2,2, ".NET Bot Black Sweatshirt", ".NET Bot Black Sweatshirt", 19.5M,  "http://catalogbaseurltobereplaced/images/products/product_batteries_basic-battery.jpg"),
+                new(1,5, "Our Halogen Headlights are made to fit majority of vehicles with our  universal fitting mold. Product requires some assembly.", "Halogen Headlights (2 Pack)", 38.99M,  "http://catalogbaseurltobereplaced/images/products/product_lighting_headlight.jpg"),
                 new(1,2, ".NET Black & White Mug", ".NET Black & White Mug", 8.50M, "http://catalogbaseurltobereplaced/images/products/2.png"),
                 new(2,5, "Prism White T-Shirt", "Prism White T-Shirt", 12,  "http://catalogbaseurltobereplaced/images/products/3.png"),
                 new(2,2, ".NET Foundation Sweatshirt", ".NET Foundation Sweatshirt", 12, "http://catalogbaseurltobereplaced/images/products/4.png"),
