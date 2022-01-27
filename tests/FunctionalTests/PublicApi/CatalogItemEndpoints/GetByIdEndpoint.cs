@@ -29,7 +29,7 @@ public class GetByIdEndpoint : IClassFixture<ApiTestFixture>
         var model = stringResponse.FromJson<GetByIdCatalogItemResponse>();
 
         Assert.Equal(5, model.CatalogItem.Id);
-        Assert.Equal("Roslyn Red Sheet", model.CatalogItem.Name);
+        Assert.Equal("Blue Performance Alloy Rim", model.CatalogItem.Name);
     }
 
     [Fact]

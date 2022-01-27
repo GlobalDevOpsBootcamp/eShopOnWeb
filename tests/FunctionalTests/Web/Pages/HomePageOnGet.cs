@@ -24,6 +24,6 @@ public class HomePageOnGet : IClassFixture<WebTestFixture>
         var stringResponse = await response.Content.ReadAsStringAsync();
 
         // Assert
-        Assert.Contains(".NET Bot Black Sweatshirt", stringResponse);
+        Assert.Contains("Turn Signal Light Bulb", stringResponse);
     }
 }

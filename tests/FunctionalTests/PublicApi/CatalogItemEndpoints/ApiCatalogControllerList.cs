@@ -36,6 +36,6 @@ public class ApiCatalogControllerList : IClassFixture<ApiTestFixture>
         var stringResponse = await response.Content.ReadAsStringAsync();
         var model = stringResponse.FromJson<CatalogIndexViewModel>();
 
-        Assert.Equal(2, model.CatalogItems.Count());
+        Assert.Equal(8, model.CatalogItems.Count());
     }
 }

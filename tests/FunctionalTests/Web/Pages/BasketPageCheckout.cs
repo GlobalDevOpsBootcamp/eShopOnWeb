@@ -45,9 +45,9 @@ public class BasketPageCheckout : IClassFixture<WebTestFixture>
         // Add Item to Cart
         var keyValues = new List<KeyValuePair<string, string>>();
         keyValues.Add(new KeyValuePair<string, string>("id", "2"));
-        keyValues.Add(new KeyValuePair<string, string>("name", "shirt"));
+        keyValues.Add(new KeyValuePair<string, string>("name", "other"));
 
-        keyValues.Add(new KeyValuePair<string, string>("price", "19.49"));
+        keyValues.Add(new KeyValuePair<string, string>("price", "48.99"));
         keyValues.Add(new KeyValuePair<string, string>("__RequestVerificationToken", token));
 
         var formContent = new FormUrlEncodedContent(keyValues);
@@ -57,7 +57,7 @@ public class BasketPageCheckout : IClassFixture<WebTestFixture>
         var stringResponse = await postResponse.Content.ReadAsStringAsync();
 
         // Assert
-        Assert.Contains(".NET Black &amp; White Mug", stringResponse);
+        Assert.Contains("Bugeye Headlights (2 Pack)", stringResponse);
 
         keyValues.Clear();
         keyValues.Add(new KeyValuePair<string, string>("__RequestVerificationToken", token));

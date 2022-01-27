@@ -23,6 +23,6 @@ public class CatalogControllerIndex : IClassFixture<WebTestFixture>
         var stringResponse = await response.Content.ReadAsStringAsync();
 
         // Assert
-        Assert.Contains(".NET Bot Black Sweatshirt", stringResponse);
+        Assert.Contains("Matte Finish Rim", stringResponse);
     }
 }
