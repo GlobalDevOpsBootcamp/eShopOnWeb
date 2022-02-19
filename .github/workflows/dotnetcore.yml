@@ -77,18 +77,6 @@ jobs:
           ]
         connection-strings-json: |
           [
-             {
-                 "name": "CatalogConnection",
-                 "value": "${{ secrets.DB_CONNECTION_STRING}}",
-                 "type": "SQLServer",
-                 "slotSetting": false
-             },
-             {
-                 "name": "IdentityConnection",
-                 "value": "${{ secrets.DB_CONNECTION_STRING}}",
-                 "type": "SQLServer",
-                 "slotSetting": false
-             }
           ]
 
     - name: 'Run Azure webapp deploy action using publish profile credentials'
@@ -157,25 +145,9 @@ jobs:
         app-name: 'eShopOnWeb-gdbc-backend'
         app-settings-json: |
           [
-             {
-                "name": "WEBSITE_RUN_FROM_PACKAGE",
-                "value": "1"
-             }
           ]
         connection-strings-json: |
           [
-             {
-                 "name": "CatalogConnection",
-                 "value": "${{ secrets.DB_CONNECTION_STRING}}",
-                 "type": "SQLServer",
-                 "slotSetting": false
-             },
-             {
-                 "name": "IdentityConnection",
-                 "value": "${{ secrets.DB_CONNECTION_STRING}}",
-                 "type": "SQLServer",
-                 "slotSetting": false
-             }
           ]
 
     - name: 'Run Azure webapp deploy action using publish profile credentials'
@@ -184,5 +156,3 @@ jobs:
         app-name: 'eShopOnWeb-gdbc-backend'
         publish-profile: ${{ secrets.publish_profile_backend }} # Define secret variable in repository settings as per action documentation
         package: ${{ runner.temp }}/build-backend
-
-
