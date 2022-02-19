@@ -69,10 +69,6 @@ jobs:
              {
                 "name": "baseUrls:webBase",
                 "value": "https://eshoponweb-gdbc.azurewebsites.net/"
-             },
-             {
-                "name": "WEBSITE_RUN_FROM_PACKAGE",
-                "value": "1"
              }
           ]
         connection-strings-json: |
