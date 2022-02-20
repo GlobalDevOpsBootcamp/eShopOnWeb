@@ -15,11 +15,6 @@ public class CatalogContextSeed
         var retryForAvailability = retry;
         try
         {
-            if (catalogContext.Database.IsSqlServer())
-            {
-                catalogContext.Database.Migrate();
-            }
-
             if (!await catalogContext.CatalogBrands.AnyAsync())
             {
                 await catalogContext.CatalogBrands.AddRangeAsync(
