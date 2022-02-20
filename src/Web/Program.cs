@@ -24,8 +24,6 @@ public class Program
             {
                 var catalogContext = services.GetRequiredService<CatalogContext>();
                 await CatalogContextSeed.SeedAsync(catalogContext, loggerFactory);
-
-                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
             }
             catch (Exception ex)
             {

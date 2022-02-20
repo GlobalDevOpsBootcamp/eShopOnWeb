@@ -41,9 +41,6 @@ public class Startup
     {
         // use in-memory database
         ConfigureInMemoryDatabases(services);
-
-        // use real database
-        //ConfigureProductionServices(services);
     }
 
     public void ConfigureDockerServices(IServiceCollection services)
@@ -64,28 +61,15 @@ public class Startup
         ConfigureServices(services);
     }
 
-    public void ConfigureProductionServices(IServiceCollection services)
-    {
-        // use real database
-        // Requires LocalDB which can be installed with SQL Server Express 2016
-        // https://www.microsoft.com/en-us/download/details.aspx?id=54284
-        services.AddDbContext<CatalogContext>(c =>
-            c.UseSqlServer(Configuration.GetConnectionString("CatalogConnection")));
-
-        ConfigureServices(services);
-    }
-
     public void ConfigureTestingServices(IServiceCollection services)
     {
         ConfigureInMemoryDatabases(services);
     }
 
-
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCookieSettings();
-
 
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
@@ -123,7 +107,6 @@ public class Startup
             config.Path = "/allservices";
         });
 
-
         var baseUrlConfig = new BaseUrlConfiguration();
         Configuration.Bind(BaseUrlConfiguration.CONFIG_NAME, baseUrlConfig);
         services.AddScoped<BaseUrlConfiguration>(sp => baseUrlConfig);
@@ -137,7 +120,6 @@ public class Startup
         services.AddBlazoredLocalStorage();
         services.AddServerSideBlazor();
 
-
         services.AddScoped<ToastService>();
         services.AddScoped<HttpService>();
         services.AddBlazorServices();
@@ -146,7 +128,6 @@ public class Startup
 
         _services = services; // used to debug registered services
     }
-
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -179,6 +160,7 @@ public class Startup
                     await context.Response.WriteAsync(result);
                 }
             });
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
