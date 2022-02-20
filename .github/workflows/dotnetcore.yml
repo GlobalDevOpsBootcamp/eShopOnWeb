@@ -59,16 +59,16 @@ jobs:
     -  name: Web App settings
        uses: Azure/appservice-settings@v1
        with:
-        app-name: 'eShopOnWeb-gdbc'
+        app-name: 'eShop-gdbc'
         app-settings-json: |
           [
              {
                 "name": "baseUrls:apiBase",
-                "value": "https://eshoponweb-gdbc-backend.azurewebsites.net/"
+                "value": "https://eshop-gdbc-backend.azurewebsites.net/"
              },
              {
                 "name": "baseUrls:webBase",
-                "value": "https://eshoponweb-gdbc.azurewebsites.net/"
+                "value": "https://eshop-gdbc.azurewebsites.net/"
              }
           ]
         connection-strings-json: |
@@ -78,7 +78,7 @@ jobs:
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2.1.5
       with:
-        app-name: 'eShopOnWeb-gdbc'
+        app-name: 'eShop-gdbc'
         publish-profile: ${{ secrets.publish_profile }} # Define secret variable in repository settings as per action documentation
         package: ${{ runner.temp }}/build
 
@@ -138,7 +138,7 @@ jobs:
     -  name: Web App settings
        uses: Azure/appservice-settings@v1
        with:
-        app-name: 'eShopOnWeb-gdbc-backend'
+        app-name: 'eShop-gdbc-backend'
         app-settings-json: |
           [
           ]
@@ -149,6 +149,6 @@ jobs:
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2.1.5
       with:
-        app-name: 'eShopOnWeb-gdbc-backend'
+        app-name: 'eShop-gdbc-backend'
         publish-profile: ${{ secrets.publish_profile_backend }} # Define secret variable in repository settings as per action documentation
         package: ${{ runner.temp }}/build-backend
