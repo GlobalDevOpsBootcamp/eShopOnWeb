@@ -13,23 +13,26 @@ using Microsoft.eShopWeb.Web.Interfaces;
 
 namespace Microsoft.eShopWeb.Web.Pages.Basket;
 
-public class CheckoutModel : PageModel
+public class CheckoutModel : PageBase
 {
     private readonly IBasketService _basketService;
     private readonly IOrderService _orderService;
     private string _username = null;
     private readonly IBasketViewModelService _basketViewModelService;
     private readonly IAppLogger<CheckoutModel> _logger;
+    private readonly IPublishEventService _publishService;
 
     public CheckoutModel(IBasketService basketService,
         IBasketViewModelService basketViewModelService,
         IOrderService orderService,
-        IAppLogger<CheckoutModel> logger)
+        IAppLogger<CheckoutModel> logger,
+        IPublishEventService publishEventService) : base(publishEventService)
     {
         _basketService = basketService;
         _orderService = orderService;
         _basketViewModelService = basketViewModelService;
         _logger = logger;
+        _publishService = publishEventService;
     }
 
     public BasketViewModel BasketModel { get; set; } = new BasketViewModel();
@@ -53,6 +56,14 @@ public class CheckoutModel : PageModel
             var updateModel = items.ToDictionary(b => b.Id.ToString(), b => b.Quantity);
             await _basketService.SetQuantities(BasketModel.Id, updateModel);
             await _orderService.CreateOrderAsync(BasketModel.Id, new Address("123 Main St.", "Kent", "OH", "United States", "44240"));
+
+            var dictionary = new Dictionary<string, string>
+        {
+            { "Username",  BasketModel.BuyerId},
+            { "Total",  BasketModel.Total().ToString()}
+        };
+
+            _publishService.PublishEvent(EventType.Checkout, dictionary);
             await _basketService.DeleteBasketAsync(BasketModel.Id);
         }
         catch (EmptyBasketOnCheckoutException emptyBasketOnCheckoutException)
